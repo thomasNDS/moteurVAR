@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "cgiu.h"
+
+
+
+main(int argc, char *argv[]){
+    int x,m;
+    char *qs,*nom,*info;
+    entry *entries;
+
+
+    /* récupération de la chaîne de paramètres */
+    qs = get_query_string(argc,argv);
+
+    /* récupération des couples (nom,valeur) */
+    entries = get_entries(qs,&m);
+
+    /* émission de l'entête */
+    print_html_head("Moteur de Recherche");
+    printDebutBody();
+    char* num = getparam(entries,m,"NUM");	
+
+   printf(" <hr color=#000444 size=3px>  <br/><br/> </FORM>\n");
+   printf("  <INPUT TYPE=BUTTON onclick=\"javascript:history.go(-1);\" VALUE=RETOUR class= Butt>");
+   
+   //On passe la main au perl
+  char str[200];
+  strcpy (str,"perl main.pl ");
+  strcat (str,"DOC"); 
+  strcat (str," ");
+  strcat (str,num); 
+  char buf1[BUFSIZ]; //BUFSIZ est une constante connue du système
+  FILE *ptr;
+
+  if ((ptr = popen(str, "r")) != NULL){
+  
+    while (fgets(buf1, BUFSIZ, ptr) != NULL) {
+      (void) printf("%s", buf1);
+    }
+    pclose(ptr);
+  } else {
+    fprintf(stderr, "Echec de popen\n");
+    exit(1);
+  }
+   
+  
+    /* émission de la fin de corps et de document */
+    print_html_tail();
+}
