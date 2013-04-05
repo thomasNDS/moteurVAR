@@ -1,0 +1,39 @@
+<HTML><HEAD> <TITLE>moteur de recherche </TITLE>
+   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Rappel', 'Precision'],
+          ['0',  0.2491205901745],
+          ['0.1',  0.256615844344074],
+          ['0.2',  0.228202425277184],
+          ['0.3',  0.172776508063397],
+          ['0.4',  0.0575032562002139],
+          ['0.5',  0.0471322278297989],
+          ['0.6',  0.0379823752731295],
+          ['0.7',  0.041677737873814],
+          ['0.8',  0],
+          ['0.9',  0],
+          ['1' , 0] 
+        ]);
+
+        var options = {
+          title: 'Courbe Precision/rappel'
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+</HEAD>
+<BODY>
+<a href=" http://localhost/RIM/projet/" target="_blank">
+<img src="http://localhost/RIM/projet/blackperl.jpeg" border=0 width=50 height=50 alt="oups"></a>
+<b>BLACK PERL</b> 
+ </br>
+<div id="chart_div" style="width: 900px; height: 500px;"></div>
+
+</BODY>
+</HTML>

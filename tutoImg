@@ -1,0 +1,25 @@
+matrice : descripteur binaire.
+	ligne image						-> 5000
+	colone 104 descripteurs 64 couleurs et 40 textures 	->  104
+
+KNN entrée trainDescriptor, valdescriptor
+
+int kppv[5105] [k]
+float dist[k]
+pour i de 1 a 5105
+	pour l de 1 à l
+		dist[l] =distanceEuclidienne (trainDescriptor[l],valDescriptor[i]);
+		kppv[i][l]=l;
+	pour j de k+1 à 5998
+		d=DistanceEuclidienne(trainDescriptor[j],valDescriptor[i]);
+		si (d< dist[l])
+			dist[l]=d;
+			kppv[i][l]=j;
+			//On fait k+1 pour sortir de la boucle car on a échangé une valeur
+			l=k+1;
+		finsi
+	finpour
+	finpour
+finpour
+
+

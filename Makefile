@@ -1,0 +1,26 @@
+all: clear post4 stock testproc image eval search
+
+search:
+	cc searchPage.c cgiu.c -o /usr/lib/cgi-bin/RIM/search.cgi
+
+post4:
+	cc post4.c cgiu.c -o /usr/lib/cgi-bin/RIM/post4.cgi
+
+proc:
+	cc proc.c cgiu.c -o proc
+
+testproc:
+	cc testproc.c cgiu.c proc.c -o testproc
+
+image:
+	cc image.c cgiu.c proc.c RechercheImage.c -o /usr/lib/cgi-bin/RIM/image.cgi
+
+eval:
+	cc evaluation.c cgiu.c proc.c RechercheImage.c -o /usr/lib/cgi-bin/RIM/eval.cgi
+
+stock:
+	cc stock.c cgiu.c -o stock
+
+clear:
+	rm -f /usr/lib/cgi-bin/RIM/image.cgi
+	rm -f /usr/lib/cgi-bin/RIM/eval.cgi

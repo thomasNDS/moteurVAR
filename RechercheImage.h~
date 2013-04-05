@@ -1,0 +1,17 @@
+#ifndef _Rech
+#define _Rech
+void exitfail();
+
+void triBulles(float** tab, int taille);
+
+float produitScalaire(float* U, float* V,int N) ;
+
+float distanceEuclidienne(float* trainDescriptor,float* valDescriptor);
+
+float** trueKnn(float** trainDescriptor, float** valDescriptor, int k, int indVal);
+
+float** RechercheImage(float* moyConcept,int seuil,float** trainDescriptors,float** valDescriptors,int indVal,int nbConcepts,char** trainList,char** valList,char** concepts,int** trainAnns,int k);
+
+void affichageResultat(char** concepts,int k,int nbConcepts,float** dist,char** trainList,float* moyConcept, float seuil);
+
+#endif
